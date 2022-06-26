@@ -1,24 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import "./styles/styles.js";
+import "./css/App.css";
+import { AppWrapper } from "./styles/styles";
+import { ThemeProvider } from "styled-components";
+import { theme } from "./styles/theme";
+import { ModalWindowForFeedbackContainer } from "./components/Modal/ModalWindowForFeedback.container";
 
 function App() {
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const contractor = "Fire";
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+      <AppWrapper>
+        <button type="button" onClick={() => setModalIsOpen(!modalIsOpen)}>
+          Toggle button
+        </button>
+        <ModalWindowForFeedbackContainer
+          modalIsOpen={modalIsOpen}
+          setModalIsOpen={setModalIsOpen}
+          contractor={contractor}
+        />
+      </AppWrapper>
+    </ThemeProvider>
   );
 }
 
