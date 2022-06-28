@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import MaskedInput from "react-text-mask";
+import DatePicker from "react-datepicker";
 
 export const ModalWindowForFeedbackWrapper = styled.div`
   ${({ theme }) => theme.mainFont};
@@ -8,17 +8,33 @@ export const ModalWindowForFeedbackWrapper = styled.div`
   top: 0;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 100;
-  ${({ modalIsOpen }) => (modalIsOpen ? 'height: 100vh;' : 'height: 0;')}
+  ${({ modalIsOpen }) => (modalIsOpen ? 'height: 100vh; overflow-y: scroll; opacity: 1; transition: opacity .5s ease;' : 'height: 0; opacity: 0;')}
+  
+  .form-control {
+    padding: 6px 24px;
+    width: calc(100% - 48px);
+    ${({ theme }) => theme.textArticleForTextFontSize};
+    ${({ theme }) => theme.inputBorder};
+    background-color: #fff;
+  }
+  
+  .false_form-control {
+    padding: 6px 24px;
+    width: calc(100% - 48px);
+    ${({ theme }) => theme.textArticleForTextFontSize};
+    border: 1px solid rgb(255, 103, 103); 
+    background-color: rgb(255, 203, 203);
+  }
 `;
 
 export const ModalFormStyled = styled.form`
   position: relative;
   ${({ modalIsOpen }) =>
     modalIsOpen
-      ? 'top: calc(50% - 292px); transition: all .4s linear .2s;'
-      : 'top: -585px;'}
+      ? 'top: 0; transition: all .4s linear .2s;'
+      : 'top: -985px;'}
   width: 630px;
-  height: 585px;
+  height: 900px;
   background-color: ${({ theme }) => theme.designerTitleColor};
   border-radius: 5px;
   margin: auto;
@@ -58,7 +74,7 @@ export const ModalSuccessSendMessageStyled = styled.div`
 
 export const ContainerForModalItemsStyled = styled.div`
   position: absolute;
-  width: 100%;
+  width: calc(100% - 96px);
   padding: 48px;
 
   ${({ theme }) =>
@@ -84,19 +100,53 @@ export const ModalInputTitleStyled = styled.div`
     `)}
 `;
 
-export const ModalInputStyled = styled(MaskedInput)`
-  padding: 12px 24px;
-  width: 100%;
+export const ModalInputStyled = styled.input`
+  padding: 6px 24px;
+  width: calc(100% - 48px);
   ${({ theme }) => theme.textArticleForTextFontSize};
   ::placeholder {
     ${({ theme }) => theme.textArticleForTextFontSize};
   }
   ${({ theme }) => theme.inputBorder};
-  ${({ propName, propPhone, propEmail, theme }) =>
-    propName === true || propPhone === true || propEmail === true
+  ${({propName}) => propName ?  'text-transform: uppercase;' : ''};
+  ${({ propName, propPhone, propEmail, propDate, theme }) =>
+    propName === true || propPhone === true || propEmail === true || propDate === true
       ? `background-color: ${theme.whiteColor};`
       : 'border: 1px solid rgb(255, 103, 103); background-color: rgb(255, 203, 203);'}
 `;
+
+export const ModalInputDatePickerStyled = styled(DatePicker)`
+  padding: 6px 24px;
+  width: calc(100% - 48px);
+  ${({ theme }) => theme.textArticleForTextFontSize};
+  ::placeholder {
+    ${({ theme }) => theme.textArticleForTextFontSize};
+  }
+  ${({ theme }) => theme.inputBorder};
+  ${({propName}) => propName ?  'text-transform: uppercase;' : ''};
+  ${({ propName, propPhone, propEmail, propDate, theme }) =>
+    propName === true || propPhone === true || propEmail === true || propDate === true
+        ? `background-color: ${theme.whiteColor};`
+        : 'border: 1px solid rgb(255, 103, 103); background-color: rgb(255, 203, 203);'}
+`;
+
+export const ModalTextareaStyled = styled.textarea`
+  padding: 6px 24px;
+  width: calc(100% - 48px);
+  max-width: calc(100% - 48px);
+  min-height: 180px;
+  max-height: 180px;
+  overflow-y: scroll;
+  ${({ theme }) => theme.textArticleForTextFontSize};
+  ::placeholder {
+    ${({ theme }) => theme.textArticleForTextFontSize};
+  }
+  ${({ theme }) => theme.inputBorder};
+  ${({ propMessage, theme }) =>
+      propMessage === true
+          ? `background-color: ${theme.whiteColor};`
+          : 'border: 1px solid rgb(255, 103, 103); background-color: rgb(255, 203, 203);'}
+`
 
 export const ModalCloseButtonStyled = styled.button`
   border: none;
@@ -277,4 +327,12 @@ export const ModalRequestSuccessButtonStyled = styled.button`
 
 export const ErrorStyled = styled.div`
   ${({ theme }) => theme.inputError};
+`;
+
+export const SuccessStyled = styled.div`
+  ${({ theme }) => theme.inputSuccess};
+`;
+
+export const CheckStyled = styled.div`
+  ${({ theme }) => theme.inputCheck};
 `;

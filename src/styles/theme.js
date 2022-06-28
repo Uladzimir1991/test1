@@ -101,7 +101,9 @@ export const theme = () => ({
   buttonStyle:
     "background-color: #5895C7; border-radius: 5px; color: #FEFEFE; border: none;",
   inputBorder: "border: 1px solid #ECF0F2; border-radius: 5px;",
-  inputError: "color: red; font-size: 14px; margin-top: 5px;",
+  inputError: "color: #f54248; font-size: 14px; margin-top: 5px;",
+  inputSuccess: "color: #7bf542; font-size: 14px; margin-top: 5px;",
+  inputCheck: "color: #f5c842; font-size: 14px; margin-top: 5px;",
   contractorBackground: "#ecf0f2",
   subtitleWindow:
     "font-size: 13px; " +

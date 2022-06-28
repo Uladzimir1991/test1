@@ -12,11 +12,9 @@ const useValidation = (value, validations) => {
   useEffect(() => {
     for (const validation in validations) {
       switch (validation) {
-        case "name":
-          const name = /[a-zA-Z]\s[a-zA-Z]{7,61}$/gi;
-          name.test(String(value).toLowerCase())
-            ? setNameError(true)
-            : setNameError(false);
+        case "isName":
+          const name = /[a-zA-Z]{3,30}\s[a-zA-Z]{3,30}$/gi;
+          name.test(String(value)) ? setNameError(false) : setNameError(true);
           break;
         case "minLength":
           value.length < validations[validation]
@@ -32,7 +30,7 @@ const useValidation = (value, validations) => {
           value ? setEmpty(false) : setEmpty(true);
           break;
         case "isPhone":
-          const phone = /[\+\ ?\(?\)? ?\-?\d]{16}$/;
+          const phone = /[\+\s?\(?\)?\s?\-?\d]{17}$/g;
           phone.test(String(value))
             ? setPhoneError(false)
             : setPhoneError(true);
@@ -69,7 +67,7 @@ const useValidation = (value, validations) => {
     maxLengthError,
     emailError,
     phoneError,
-    nameError
+    nameError,
   ]);
 
   return {
@@ -79,7 +77,7 @@ const useValidation = (value, validations) => {
     emailError,
     inputValid,
     phoneError,
-    nameError
+    nameError,
   };
 };
 
@@ -87,17 +85,25 @@ export const useInput = (initialValue, validations) => {
   const [value, setValue] = useState(initialValue);
   const [isDirty, setDirty] = useState(false);
   const valid = useValidation(value, validations);
+  const [startDate, setStartDate] = useState();
+
+  const submitForm = () => {
+    setValue('');
+    const date = document.getElementById('Date');
+    date.valueAsDate = null;
+
+  }
 
   const onChange = (event) => {
     setValue(event.target.value);
   };
 
-  const nameOnChange = (event) => {
-    setValue(event.target.value.replace(/[^a-zA-Z\s]/g, ""));
+  const dateOnChange = (event) => {
+    setValue(event.target.value.replace(/[a-zA-Z\s]/gi, ""));
   };
 
-  const phoneOnChange = (event) => {
-    setValue(event.target.value);
+  const nameOnChange = (event) => {
+    setValue(event.target.value.replace(/[^a-zA-Z\s]/g, ""));
   };
 
   const onClick = () => {
@@ -111,11 +117,13 @@ export const useInput = (initialValue, validations) => {
   return {
     value,
     onChange,
-    phoneOnChange,
+    dateOnChange,
     nameOnChange,
     onBlur,
     onClick,
     isDirty,
     ...valid,
+    submitForm,
+    startDate
   };
 };

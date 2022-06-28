@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   ModalInputTitleStyled,
-  ModalInputStyled,
   ErrorStyled,
+  SuccessStyled,
+  CheckStyled,
 } from "../ModalWindowForFeedbakc.style";
 import MaskedInput from "react-text-mask";
-
 
 export const ModalInputPhoneContainer = ({
   setPropPhone,
@@ -13,11 +13,10 @@ export const ModalInputPhoneContainer = ({
   phone,
 }) => {
   const phoneVerification =
-    phone.isDirty &&
-    (phone.phoneError ||
-      phone.maxLengthError ||
-      phone.minLengthError ||
-      phone.isEmpty);
+    phone.phoneError ||
+    phone.isEmpty ||
+    phone.minLengthError ||
+    phone.maxLengthError;
 
   const handleInputClick = (event) => {
     if (event.target.getAttribute("name") === "phone") {
@@ -25,32 +24,55 @@ export const ModalInputPhoneContainer = ({
     }
   };
 
+  const maskItem = [
+    "+7",
+    "",
+    "(",
+    /[1-9]/,
+    /\d/,
+    /\d/,
+    ")",
+    " ",
+    /\d/,
+    /\d/,
+    /\d/,
+    "-",
+    /\d/,
+    /\d/,
+    "-",
+    /\d/,
+    /\d/,
+  ];
+
   return (
     <>
       <ModalInputTitleStyled propPhone={propPhone}>
         Phone number
       </ModalInputTitleStyled>
-      <ModalInputStyled>
-          <MaskedInput
+      <MaskedInput
+        id="#mask"
+        className={propPhone ? "form-control" : "false_form-control"}
         type="text"
         name="phone"
         autoComplete="on"
         onClick={(event) => handleInputClick(event)}
         form="form"
-        onChange={(event) => phone.phoneOnChange(event)}
+        onChange={(event) => phone.onChange(event)}
         onBlur={phone.onBlur}
         value={phone.value}
-        propPhone={propPhone}
-        mask={['+7','','(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, '-', /\d/, /\d/]}
-        className="form-control"
-        placeholder="+7(***)***-**-**"
-        guide={true}
+        mask={maskItem}
+        placeholder="+7(___)___-__-__"
       />
-      </ModalInputStyled>
       {phoneVerification && (
-        <ErrorStyled hidden={propPhone}>
-          Error! The phone number must begin with a `+` and be 17 digits
-        </ErrorStyled>
+        <CheckStyled hidden={!propPhone || phone.value === ""}>
+          Please,fill in the mask
+        </CheckStyled>
+      )}
+      {phoneVerification && (
+        <ErrorStyled hidden={propPhone}>Please,fill in the mask</ErrorStyled>
+      )}
+      {!phoneVerification && (
+        <SuccessStyled hidden={!propPhone}>Legal number</SuccessStyled>
       )}
     </>
   );

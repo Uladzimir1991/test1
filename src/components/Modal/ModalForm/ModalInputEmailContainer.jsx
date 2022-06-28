@@ -3,32 +3,30 @@ import {
   ModalInputTitleStyled,
   ModalInputStyled,
   ErrorStyled,
-} from '../ModalWindowForFeedbakc.style';
+  SuccessStyled,
+  CheckStyled,
+} from "../ModalWindowForFeedbakc.style";
 
 export const ModalInputEmailContainer = ({
   setPropEmail,
   propEmail,
   email,
 }) => {
-
   const emailVerification =
-    email.isDirty &&
-    (email.emailError ||
-      email.maxLengthError ||
-      email.minLengthError ||
-      email.isEmpty);
+    email.emailError ||
+    email.maxLengthError ||
+    email.minLengthError ||
+    email.isEmpty;
 
   const handleInputClick = (event) => {
-    if (event.target.getAttribute('name') === 'email') {
+    if (event.target.getAttribute("name") === "email") {
       setPropEmail(true);
     }
   };
 
   return (
     <>
-      <ModalInputTitleStyled propEmail={propEmail}>
-        Email
-      </ModalInputTitleStyled>
+      <ModalInputTitleStyled propEmail={propEmail}>Email</ModalInputTitleStyled>
       <ModalInputStyled
         type="text"
         name="email"
@@ -43,7 +41,17 @@ export const ModalInputEmailContainer = ({
         propEmail={propEmail}
       />
       {emailVerification && (
-        <ErrorStyled hidden={propEmail}>"Error! Incorrect email"</ErrorStyled>
+        <CheckStyled hidden={!propEmail || email.value === ""}>
+          Please,fill the email field
+        </CheckStyled>
+      )}
+      {emailVerification && (
+        <ErrorStyled hidden={propEmail}>Incorrect email</ErrorStyled>
+      )}
+      {!emailVerification && (
+        <SuccessStyled hidden={!propEmail}>
+          Legal email
+        </SuccessStyled>
       )}
     </>
   );

@@ -8,7 +8,6 @@ import { ModalWindowForFeedbackContainer } from "./components/Modal/ModalWindowF
 
 function App() {
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  const contractor = "Fire";
   return (
     <ThemeProvider theme={theme}>
       <AppWrapper>
@@ -18,7 +17,6 @@ function App() {
         <ModalWindowForFeedbackContainer
           modalIsOpen={modalIsOpen}
           setModalIsOpen={setModalIsOpen}
-          contractor={contractor}
         />
       </AppWrapper>
     </ThemeProvider>

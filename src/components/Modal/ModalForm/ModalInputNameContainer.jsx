@@ -3,18 +3,16 @@ import {
   ModalInputTitleStyled,
   ModalInputStyled,
   ErrorStyled,
+  SuccessStyled,
+  CheckStyled,
 } from "../ModalWindowForFeedbakc.style";
 
-export const ModalInputNameContainer = ({
-  setPropName,
-  propName,
-  name,
-}) => {
+export const ModalInputNameContainer = ({ setPropName, propName, name }) => {
   const nameVerification =
-    name.isDirty &&
-    (name.isEmpty ||
-      name.minLengthError ||
-      name.maxLengthError);
+    name.nameError ||
+    name.isEmpty &&
+    name.minLengthError ||
+    name.maxLengthError;
 
   const handleInputClick = (event) => {
     if (event.target.getAttribute("name") === "name") {
@@ -25,7 +23,7 @@ export const ModalInputNameContainer = ({
   return (
     <>
       <ModalInputTitleStyled propName={propName}>
-        Firstname and Lastname
+        Full name
       </ModalInputTitleStyled>
       <ModalInputStyled
         type="text"
@@ -41,10 +39,19 @@ export const ModalInputNameContainer = ({
         propName={propName}
       />
       {nameVerification && (
+        <CheckStyled hidden={!propName || name.value === ""}>
+          First- and lastname must be between 3 and 30 characters and have a
+          space between words.
+        </CheckStyled>
+      )}
+      {nameVerification && (
         <ErrorStyled hidden={propName}>
-          Error! Firstname and Lastname must be between 3 and 30 characters and
-          have 1 space between words.
+          First- and lastname must be between 3 and 30 characters and have a
+          space between words.
         </ErrorStyled>
+      )}
+      {!nameVerification && (
+        <SuccessStyled hidden={!propName}>Legal name</SuccessStyled>
       )}
     </>
   );

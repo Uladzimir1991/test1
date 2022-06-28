@@ -5,13 +5,18 @@ import { ModalFormContainer } from "./ModalFormContainer";
 export const ModalFormForFeedbackContainer = ({
   modalIsOpen,
   validForm,
-  contractor,
   setPropName,
   setPropPhone,
   setPropEmail,
+  propDate,
+  setPropDate,
+  setPropMessage,
+  propMessage,
+  message,
   propName,
   propPhone,
   propEmail,
+  date,
   name,
   phone,
   email,
@@ -27,9 +32,7 @@ export const ModalFormForFeedbackContainer = ({
       <ModalFormStyled
         id="form"
         onClick={(event) => handleForm(event)}
-        action="#"
         name="form"
-        method="post"
         modalIsOpen={modalIsOpen}
         hidden={validForm}
       >
@@ -39,13 +42,18 @@ export const ModalFormForFeedbackContainer = ({
           propEmail={propEmail}
           handleCloseModal={handleCloseModal}
           handleClick={handleClick}
-          contractor={contractor}
           setPropName={setPropName}
           setPropPhone={setPropPhone}
           setPropEmail={setPropEmail}
+          setPropDate={setPropDate}
+          propDate={propDate}
           name={name}
           phone={phone}
           email={email}
+          date={date}
+          setPropMessage={setPropMessage}
+          propMessage={propMessage}
+          message={message}
         />
       </ModalFormStyled>
     </>

@@ -6,7 +6,6 @@ import {
 } from "../ModalWindowForFeedbakc.style";
 
 export const ModalRequestCallContainer = ({
-  contractor,
   propFirstName,
   propLastName,
   propPhone,
@@ -24,7 +23,7 @@ export const ModalRequestCallContainer = ({
           propPhone={propPhone}
           propEmail={propEmail}
         >
-          Leave your contact details and a representative «{contractor.title}» will contact you within 2 hours.
+          Leave your contact details and we will contact you within 2 hours.
         </ModalRequestCallItemsStyled>
       </ModalRequestCallContainerStyled>
     </>

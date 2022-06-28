@@ -5,32 +5,33 @@ import {
   ModalSuccessSendMessageStyled,
   ModalSuccessRequestCallItemsStyled,
   ModalRequestSuccessButtonStyled,
-} from '../ModalWindowForFeedbakc.style';
+} from "../ModalWindowForFeedbakc.style";
 import ModalCloseBtn from "../../../features/Icons/ModalCloseBtn";
 
 export const ModalSuccessSendMessageContainer = ({
-  contractor,
+  data,
   validForm,
   handleCloseModal = () => {},
   handleClick = () => {},
 }) => {
+  const submitData = [];
+  submitData.push(JSON.parse(data));
   return (
     <>
       <ModalSuccessSendMessageStyled validForm={validForm} hidden={!validForm}>
         <ModalRequestCallTitleStyled>
-          {/*{successMessageSend}*/}
         </ModalRequestCallTitleStyled>
         <ModalSuccessRequestCallItemsStyled>
-          {/*{successMessageSendItemFirst}«{contractor.title}»*/}
-          {/*{successMessageSendItemSecond}*/}
+          {submitData.map(item => (
+              <div key={item.name}>
+                <div>{item.name}</div>
+                <div>{item.phone}</div>
+                <div>{item.email}</div>
+                <div>{item.birthday}</div>
+                <div>{item.message}</div>
+              </div>
+          ))}
         </ModalSuccessRequestCallItemsStyled>
-        <ModalRequestSuccessButtonStyled
-          validForm={validForm}
-          onClick={(event) => handleClick(event)}
-          type="submit"
-        >
-          {/*{successButtonDone}*/}
-        </ModalRequestSuccessButtonStyled>
         <ModalCloseButtonStyled type="button" onClick={handleCloseModal}>
           <ModalCloseBtn />
         </ModalCloseButtonStyled>
