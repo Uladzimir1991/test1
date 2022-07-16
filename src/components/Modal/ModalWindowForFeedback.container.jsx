@@ -14,7 +14,7 @@ export const ModalWindowForFeedbackContainer = ({
   const [propEmail, setPropEmail] = useState(true);
   const [propDate, setPropDate] = useState(true);
   const [propMessage, setPropMessage] = useState(true);
-  const [data, setData] = useState('');
+  const [data, setData] = useState({});
 
   const message = useInput("", {
     isEmpty: true,
@@ -96,20 +96,15 @@ export const ModalWindowForFeedbackContainer = ({
       }
 
       const sendFormDate = () => {
-        const data = {
-          name: name.value,
-          email: email.value,
-          phone: phone.value,
-          birthday: date.value,
-          message: message.value,
-        };
-
-        sendData('https://jsonplaceholder.typicode.com/todos', data)
+        const sendURL = 'https://jsonplaceholder.typicode.com/todos';
+        sendData(sendURL)
             .then((res) => {
-              setData(JSON.stringify(res));
+              setData({response: `Сообщение отправлено успешно!`});
             })
             .catch((err) => {
-              setData(err);
+              setData({
+                error: `Ошибка отправления данных на сервер! Проверьте путь отправления (${sendURL}).`
+              });
             })
       }
 

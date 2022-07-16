@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {
   ModalCloseButtonStyled,
   ModalRequestCallTitleStyled,
@@ -14,28 +14,28 @@ export const ModalSuccessSendMessageContainer = ({
   handleCloseModal = () => {},
   handleClick = () => {},
 }) => {
-  const submitData = [];
-  submitData.push(JSON.parse(data));
+  console.log(data);
   return (
-    <>
-      <ModalSuccessSendMessageStyled validForm={validForm} hidden={!validForm}>
-        <ModalRequestCallTitleStyled>
-        </ModalRequestCallTitleStyled>
-        <ModalSuccessRequestCallItemsStyled>
-          {submitData.map(item => (
-              <div key={item.name}>
-                <div>{item.name}</div>
-                <div>{item.phone}</div>
-                <div>{item.email}</div>
-                <div>{item.birthday}</div>
-                <div>{item.message}</div>
-              </div>
-          ))}
-        </ModalSuccessRequestCallItemsStyled>
-        <ModalCloseButtonStyled type="button" onClick={handleCloseModal}>
-          <ModalCloseBtn />
-        </ModalCloseButtonStyled>
-      </ModalSuccessSendMessageStyled>
-    </>
+      validForm && data.response || data.error ? (
+        <>
+          <ModalSuccessSendMessageStyled validForm={validForm} hidden={!validForm}>
+            <ModalRequestCallTitleStyled>
+            </ModalRequestCallTitleStyled>
+            <ModalSuccessRequestCallItemsStyled>
+              {!data.error ? (
+                  <div>
+                    {data.response}
+                  </div> ) :
+                  (<div>
+                    {data.error}
+                  </div>)
+              }
+            </ModalSuccessRequestCallItemsStyled>
+            <ModalCloseButtonStyled type="button" onClick={handleCloseModal}>
+              <ModalCloseBtn />
+            </ModalCloseButtonStyled>
+          </ModalSuccessSendMessageStyled>
+        </>
+      ) : null
   );
 };

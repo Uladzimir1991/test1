@@ -8,11 +8,8 @@ import {
 } from "../ModalWindowForFeedbakc.style";
 
 export const ModalInputNameContainer = ({ setPropName, propName, name }) => {
-  const nameVerification =
-    name.nameError ||
-    name.isEmpty &&
-    name.minLengthError ||
-    name.maxLengthError;
+  const nameVerification = name.nameError || name.isEmpty &&
+      name.minLengthError || name.maxLengthError;
 
   const handleInputClick = (event) => {
     if (event.target.getAttribute("name") === "name") {
