@@ -5,6 +5,7 @@ import {
   ErrorStyled,
   SuccessStyled,
   CheckStyled,
+  ContainerForFieldsStyled,
 } from "../ModalWindowForFeedbakc.style";
 
 export const ModalInputEmailContainer = ({
@@ -25,7 +26,7 @@ export const ModalInputEmailContainer = ({
   };
 
   return (
-    <>
+    <ContainerForFieldsStyled>
       <ModalInputTitleStyled propEmail={propEmail}>Email</ModalInputTitleStyled>
       <ModalInputStyled
         type="text"
@@ -53,6 +54,6 @@ export const ModalInputEmailContainer = ({
           Legal email
         </SuccessStyled>
       )}
-    </>
+    </ContainerForFieldsStyled>
   );
 };

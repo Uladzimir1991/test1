@@ -4,6 +4,7 @@ import {
   ModalInputStyled,
   ErrorStyled,
   SuccessStyled,
+  ContainerForFieldsStyled,
 } from "../ModalWindowForFeedbakc.style";
 
 import "react-datepicker/dist/react-datepicker.css";
@@ -22,7 +23,7 @@ export const ModalInputDatePickContainer = ({
   };
 
   return (
-    <>
+    <ContainerForFieldsStyled>
       <ModalInputTitleStyled>Date of birth</ModalInputTitleStyled>
       <ModalInputStyled
         selected={date.startDate}
@@ -42,6 +43,6 @@ export const ModalInputDatePickContainer = ({
       {!dateVerification && (
         <SuccessStyled hidden={!propDate}>Legal date</SuccessStyled>
       )}
-    </>
+    </ContainerForFieldsStyled>
   );
 };

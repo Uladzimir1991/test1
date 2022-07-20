@@ -5,6 +5,7 @@ import {
   ErrorStyled,
   SuccessStyled,
   CheckStyled,
+    ContainerForFieldsStyled
 } from "../ModalWindowForFeedbakc.style";
 
 export const ModalInputNameContainer = ({ setPropName, propName, name }) => {
@@ -18,7 +19,7 @@ export const ModalInputNameContainer = ({ setPropName, propName, name }) => {
   };
 
   return (
-    <>
+    <ContainerForFieldsStyled>
       <ModalInputTitleStyled propName={propName}>
         Full name
       </ModalInputTitleStyled>
@@ -50,6 +51,6 @@ export const ModalInputNameContainer = ({ setPropName, propName, name }) => {
       {!nameVerification && (
         <SuccessStyled hidden={!propName}>Legal name</SuccessStyled>
       )}
-    </>
+    </ContainerForFieldsStyled>
   );
 };

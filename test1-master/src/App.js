@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import "./styles/styles.js";
 import "./css/App.css";
-import { AppWrapper } from "./styles/styles";
+import {
+  AppWrapper,
+  StartButtonStyled
+} from "./styles/styles";
 import { ThemeProvider } from "styled-components";
 import { theme } from "./styles/theme";
 import { ModalWindowForFeedbackContainer } from "./components/Modal/ModalWindowForFeedback.container";
@@ -11,9 +14,9 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <AppWrapper>
-        <button type="button" onClick={() => setModalIsOpen(!modalIsOpen)}>
-          Toggle button
-        </button>
+        <StartButtonStyled type="button" onClick={() => setModalIsOpen(!modalIsOpen)}>
+          Press me
+        </StartButtonStyled>
         <ModalWindowForFeedbackContainer
           modalIsOpen={modalIsOpen}
           setModalIsOpen={setModalIsOpen}

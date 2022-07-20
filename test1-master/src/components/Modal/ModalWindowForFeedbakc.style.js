@@ -83,17 +83,29 @@ export const ContainerForModalItemsStyled = styled.div`
   `)}
 `;
 
+export const ContainerForFieldsStyled = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 45%;
+`
+
+export const InputsBlockStyled = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+`
+
 export const ModalInputTitleStyled = styled.div`
   ${({ theme }) => theme.landingSmallTitleFontSize};
-  ${({ propName, propPhone, propEmail }) =>
-    propName === true || propPhone === true || propEmail === true
+  ${({ propName, propPhone, propEmail, propDate }) =>
+    propName === true || propPhone === true || propEmail === true || propDate !== true
       ? `margin: 20px 0 10px;`
       : 'margin: 15px 0 7px;'}
 
-  ${({ theme, propName, propPhone, propEmail }) =>
+  ${({ theme, propName, propPhone, propEmail, propDate }) =>
     theme.mediaMobile(`
         ${
-          propName === true || propPhone === true || propEmail === true
+          propName === true || propPhone === true || propEmail === true || propDate !== true
             ? `margin: 20px 0 10px;`
             : 'margin: 7px 0;'
         }
@@ -113,21 +125,6 @@ export const ModalInputStyled = styled.input`
     propName === true || propPhone === true || propEmail === true || propDate === true
       ? `background-color: ${theme.whiteColor};`
       : 'border: 1px solid rgb(255, 103, 103); background-color: rgb(255, 203, 203);'}
-`;
-
-export const ModalInputDatePickerStyled = styled(DatePicker)`
-  padding: 6px 24px;
-  width: calc(100% - 48px);
-  ${({ theme }) => theme.textArticleForTextFontSize};
-  ::placeholder {
-    ${({ theme }) => theme.textArticleForTextFontSize};
-  }
-  ${({ theme }) => theme.inputBorder};
-  ${({propName}) => propName ?  'text-transform: uppercase;' : ''};
-  ${({ propName, propPhone, propEmail, propDate, theme }) =>
-    propName === true || propPhone === true || propEmail === true || propDate === true
-        ? `background-color: ${theme.whiteColor};`
-        : 'border: 1px solid rgb(255, 103, 103); background-color: rgb(255, 203, 203);'}
 `;
 
 export const ModalTextareaStyled = styled.textarea`
@@ -177,8 +174,8 @@ export const ModalCloseButtonStyled = styled.button`
 export const ModalSubmitButtonStyled = styled.button`
   ${({ theme }) => theme.designerButtonsFontSize};
   ${({ theme }) => theme.buttonStyle};
-  ${({ propName, propPhone, propEmail }) =>
-    propName === true && propPhone === true && propEmail === true
+  ${({ propName, propPhone, propEmail, propDate }) =>
+    propName === true && propPhone === true && propEmail === true && propDate !== true
       ? 'margin: 20px 0 12px;'
       : 'margin: 15px 0 12px;'};
   ${({ validForm }) => (validForm ? 'width: 170px;' : 'width: 100%;')}
@@ -217,10 +214,10 @@ export const ModalSubmitButtonStyled = styled.button`
     opacity: 1;
   }
 
-  ${({ theme, propName, propPhone, propEmail }) =>
+  ${({ theme, propName, propPhone, propEmail, propDate }) =>
     theme.mediaMobile(`
        ${
-         propName === true && propPhone === true && propEmail === true
+         propName === true && propPhone === true && propEmail === true && propDate === true
            ? 'margin: 25px 0 12px;'
            : 'margin: 10px 0 7px'
        };
@@ -258,16 +255,16 @@ export const ModalRequestCallTitleStyled = styled.h3`
 
 export const ModalRequestCallItemsStyled = styled.div`
   ${({ theme }) => theme.Manrope_Regular_16_T4};
-  ${({ propName, propPhone, propEmail }) =>
-    propName === true && propPhone === true && propEmail === true
+  ${({ propName, propPhone, propEmail, propDate }) =>
+    propName === true && propPhone === true && propEmail === true && propDate === true
       ? `margin: 15px 0 30px;`
       : 'margin: 15px 0;'};
 
-  ${({ theme, propName, propPhone, propEmail }) =>
+  ${({ theme, propName, propPhone, propEmail, propDate }) =>
     theme.mediaMobile(`
         ${theme.smallFontSize};
         ${
-          propName === true && propPhone === true && propEmail === true
+          propName === true && propPhone === true && propEmail === true && propDate === true
             ? `margin: 15px 0 30px;`
             : 'margin: 5px 0 10px;'
         };

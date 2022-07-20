@@ -1,5 +1,8 @@
 import React from "react";
-import { ContainerForModalItemsStyled } from "../ModalWindowForFeedbakc.style";
+import {
+  ContainerForModalItemsStyled,
+  InputsBlockStyled
+} from "../ModalWindowForFeedbakc.style";
 import { ModalRequestCallContainer } from "./ModalRequestCallContainer";
 import { ModalFormForButtonsAndTermsContainer } from "./ModalFormForButtonsAndTermsContainer";
 import { ModalInputNameContainer } from "./ModalInputNameContainer";
@@ -34,28 +37,30 @@ export const ModalFormContainer = ({
         propPhone={propPhone}
         propEmail={propEmail}
       />
-      <ModalInputNameContainer
-        setPropName={setPropName}
-        propName={propName}
-        name={name}
-      />
-      <ModalInputEmailContainer
-        setPropEmail={setPropEmail}
-        propEmail={propEmail}
-        email={email}
-      />
-      <ModalInputPhoneContainer
-        setPropPhone={setPropPhone}
-        propPhone={propPhone}
-        phone={phone}
-        propName={propName}
-        propEmail={propEmail}
-      />
-      <ModalInputDatePickContainer
-        setPropDate={setPropDate}
-        propDate={propDate}
-        date={date}
-      />
+      <InputsBlockStyled>
+        <ModalInputNameContainer
+          setPropName={setPropName}
+          propName={propName}
+          name={name}
+        />
+        <ModalInputEmailContainer
+          setPropEmail={setPropEmail}
+          propEmail={propEmail}
+          email={email}
+        />
+        <ModalInputPhoneContainer
+          setPropPhone={setPropPhone}
+          propPhone={propPhone}
+          phone={phone}
+          propName={propName}
+          propEmail={propEmail}
+        />
+        <ModalInputDatePickContainer
+          setPropDate={setPropDate}
+          propDate={propDate}
+          date={date}
+        />
+      </InputsBlockStyled>
       <ModalInputMessageContainer
         setPropMessage={setPropMessage}
         propMessage={propMessage}

@@ -4,6 +4,7 @@ import {
   ErrorStyled,
   SuccessStyled,
   CheckStyled,
+  ContainerForFieldsStyled,
 } from "../ModalWindowForFeedbakc.style";
 import MaskedInput from "react-text-mask";
 
@@ -45,7 +46,7 @@ export const ModalInputPhoneContainer = ({
   ];
 
   return (
-    <>
+    <ContainerForFieldsStyled>
       <ModalInputTitleStyled propPhone={propPhone}>
         Phone number
       </ModalInputTitleStyled>
@@ -74,6 +75,6 @@ export const ModalInputPhoneContainer = ({
       {!phoneVerification && (
         <SuccessStyled hidden={!propPhone}>Legal number</SuccessStyled>
       )}
-    </>
+    </ContainerForFieldsStyled>
   );
 };
